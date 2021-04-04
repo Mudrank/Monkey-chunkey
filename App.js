@@ -1,14 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View  , TextInput } from 'react-native';
+import { Header } from 'react-native-elements';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function App() {
+export default class  App extends react.Component {
+constructor(){
+  super();
+  this.state = {
+    word:' '
+  }
+}
+ 
+render() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <SafeAreaView>
+      <Header 
+      centerComponent={{ 
+         text:"Monkey-chunkey" , style:{ color : '#000' , fontSize:20 }
+        }}
+      backgroundColor={'#808080'}
+      />
+
+      <TextInput      style={styles.input}  
+      placeholder="enter the chunkey"
+      onChangeText={ Text  => {
+this.setState({
+  word:Text,
+})
+      }}
+      value={
+        this.state.word
+      }
+      />
+        </SafeAreaView>
     </View>
+    
   );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -18,4 +47,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+  }
 });
